@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'screens/sign_up_screen.dart';
 
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({super.key});
+
+  void _navigateToSignUp(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const SignUpScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +76,9 @@ class GetStartedScreen extends StatelessWidget {
                         width: 24,
                         height: 24,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _navigateToSignUp(context);
+                      },
                       label: const Text(
                         "Continue with Apple",
                         style: TextStyle(
@@ -101,7 +111,9 @@ class GetStartedScreen extends StatelessWidget {
                         width: 24,
                         height: 24,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _navigateToSignUp(context);
+                      },
                       label: const Text(
                         "Continue with Google",
                         style: TextStyle(
@@ -114,14 +126,23 @@ class GetStartedScreen extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 15),
-                  const Text(
-                    "Continue with email",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
+
+                  // Continue with Email (Clickable Text)
+                  GestureDetector(
+                    onTap: () {
+                      _navigateToSignUp(context);
+                    },
+                    child: const Text(
+                      "Continue with email",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        decoration: TextDecoration.underline, // optional
+                      ),
                     ),
                   ),
+
                   const SizedBox(height: 30),
                 ],
               ),
