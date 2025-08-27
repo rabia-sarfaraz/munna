@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'verification_screen.dart'; // verification screen import kiya
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -72,7 +73,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    // Navigate to Verification Screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const VerificationScreen(),
+                      ),
+                    );
+                  },
                   child: const Text(
                     "Continue",
                     style: TextStyle(
@@ -147,7 +156,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  /// Row builder for normal alphabet keys
   Widget _buildKeyboardRow(List<String> keys) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -160,14 +168,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  /// Row with caps and backspace
   Widget _buildKeyboardRowWithCaps(List<String> keys) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          // Caps lock key (up arrow)
           ElevatedButton(
             style: _keyStyle(),
             onPressed: () {
@@ -180,7 +186,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
           ...keys.map((key) => _buildKey(isCaps ? key.toUpperCase() : key)),
 
-          // Backspace
           ElevatedButton(
             style: _keyStyle(),
             onPressed: () {},
@@ -191,13 +196,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  /// Bottom row (emoji, numbers, space, return, voice)
   Widget _buildBottomRow() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          // Emoji (outside keys, left corner)
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Icon(
@@ -218,7 +221,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
           ),
 
-          // Voice (outside keys, right corner)
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Icon(
@@ -232,7 +234,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  /// Single key builder
   Widget _buildKey(String text, {int flex = 1}) {
     return Expanded(
       flex: flex,
@@ -256,7 +257,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  /// Common style for keys
   ButtonStyle _keyStyle() {
     return ElevatedButton.styleFrom(
       backgroundColor: Colors.white,

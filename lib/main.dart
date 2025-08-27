@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/splash_screen.dart';
 import 'get_started_screen.dart';
 import 'screens/sign_up_screen.dart';
+import 'screens/verification_screen.dart';
 
 void main() {
   runApp(const MunnaMatchApp());
@@ -21,6 +22,7 @@ class MunnaMatchApp extends StatelessWidget {
         '/': (context) => const SplashScreen(),
         '/get_started': (context) => const GetStartedScreen(),
         '/sign_up': (context) => const SignUpScreen(),
+        '/verification': (context) => const VerificationScreen(),
       },
     );
   }
