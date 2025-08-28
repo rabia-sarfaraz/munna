@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'welcome_screen.dart'; // 👈 ye line add karni hai
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({super.key});
@@ -80,12 +81,16 @@ class _VerificationScreenState extends State<VerificationScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: [
-                  const SizedBox(height: 80), // heading thora neeche
+                  const SizedBox(height: 80),
                   Row(
                     children: [
                       IconButton(
                         icon: const Icon(Icons.arrow_back, color: Colors.black),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(
+                            context,
+                          ); // 👈 back arrow pe previous screen
+                        },
                       ),
                       const Spacer(),
                       const Text(
@@ -110,7 +115,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     width: 200,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Just UI, no Firebase work
+                        // 👇 Navigate to Welcome Screen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const WelcomeScreen(),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFFECAAD),
