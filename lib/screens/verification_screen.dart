@@ -37,7 +37,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          height: 50,
+          height: 45, // 👈 key ka height thoda kam
           margin: const EdgeInsets.all(2),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -47,7 +47,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
             child: Text(
               number,
               style: const TextStyle(
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
@@ -58,14 +58,33 @@ class _VerificationScreenState extends State<VerificationScreen> {
     );
   }
 
+  // 👇 Underlines hamesha grey hi rahengi
   Widget buildCodeLine(int index) {
-    bool isActive = currentIndex == index;
-    bool isFilled = code[index].isNotEmpty;
     return Expanded(
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 4),
-        height: 2,
-        color: isActive || isFilled ? Colors.blue : Colors.black26,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: 40,
+              child: Center(
+                child: Text(
+                  code[index],
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              height: 2,
+              color: Colors.black26, // 👈 fix grey underline (blue hata diya)
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -87,14 +106,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       IconButton(
                         icon: const Icon(Icons.arrow_back, color: Colors.black),
                         onPressed: () {
-                          Navigator.pop(
-                            context,
-                          ); // 👈 back arrow pe previous screen
+                          Navigator.pop(context);
                         },
                       ),
                       const Spacer(),
                       const Text(
-                        "Verification",
+                        "Verification Code",
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.w900,
@@ -105,7 +122,23 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       const SizedBox(width: 48),
                     ],
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Please Enter the 6-digit code sent to",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16, color: Colors.black),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    "youremail@gmail.com",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: List.generate(6, (index) => buildCodeLine(index)),
@@ -115,7 +148,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     width: 200,
                     child: ElevatedButton(
                       onPressed: () {
-                        // 👇 Navigate to Welcome Screen
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -152,54 +184,51 @@ class _VerificationScreenState extends State<VerificationScreen> {
               ),
             ),
           ),
+
+          // 👇 Keyboard ki height kam kar di (pehle flex:5 tha ab flex:3)
           Expanded(
-            flex: 5,
+            flex: 3,
             child: Container(
               color: Colors.grey.shade300,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            buildKey('1', onTap: () => _onKeyboardTap('1')),
-                            buildKey('2', onTap: () => _onKeyboardTap('2')),
-                            buildKey('3', onTap: () => _onKeyboardTap('3')),
-                          ],
+                  Row(
+                    children: [
+                      buildKey('1', onTap: () => _onKeyboardTap('1')),
+                      buildKey('2', onTap: () => _onKeyboardTap('2')),
+                      buildKey('3', onTap: () => _onKeyboardTap('3')),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      buildKey('4', onTap: () => _onKeyboardTap('4')),
+                      buildKey('5', onTap: () => _onKeyboardTap('5')),
+                      buildKey('6', onTap: () => _onKeyboardTap('6')),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      buildKey('7', onTap: () => _onKeyboardTap('7')),
+                      buildKey('8', onTap: () => _onKeyboardTap('8')),
+                      buildKey('9', onTap: () => _onKeyboardTap('9')),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Spacer(),
+                      buildKey('0', onTap: () => _onKeyboardTap('0')),
+                      Expanded(
+                        child: InkWell(
+                          onTap: _onBackspace,
+                          child: const Icon(
+                            Icons.backspace,
+                            size: 28,
+                            color: Colors.black,
+                          ),
                         ),
-                        Row(
-                          children: [
-                            buildKey('4', onTap: () => _onKeyboardTap('4')),
-                            buildKey('5', onTap: () => _onKeyboardTap('5')),
-                            buildKey('6', onTap: () => _onKeyboardTap('6')),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            buildKey('7', onTap: () => _onKeyboardTap('7')),
-                            buildKey('8', onTap: () => _onKeyboardTap('8')),
-                            buildKey('9', onTap: () => _onKeyboardTap('9')),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const Spacer(),
-                            buildKey('0', onTap: () => _onKeyboardTap('0')),
-                            Expanded(
-                              child: InkWell(
-                                onTap: _onBackspace,
-                                child: const Icon(
-                                  Icons.backspace,
-                                  size: 28,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),

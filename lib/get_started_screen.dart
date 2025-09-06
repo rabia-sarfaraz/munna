@@ -17,9 +17,7 @@ class GetStartedScreen extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-              "assets/images/couple.png",
-            ), // background image path
+            image: AssetImage("assets/images/couple.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -32,9 +30,7 @@ class GetStartedScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 80),
                   const Image(
-                    image: AssetImage(
-                      "assets/images/heart.png",
-                    ), // top logo path
+                    image: AssetImage("assets/images/heart.png"),
                     width: 120,
                     height: 120,
                   ),
@@ -43,9 +39,21 @@ class GetStartedScreen extends StatelessWidget {
                     "Muna Match",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5,
+                      fontSize: 65,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 2,
+                      shadows: [
+                        Shadow(
+                          offset: Offset(2.5, 2.5),
+                          blurRadius: 2.5,
+                          color: Colors.black54,
+                        ),
+                        Shadow(
+                          offset: Offset(1.5, 1.5),
+                          blurRadius: 1.5,
+                          color: Colors.black45,
+                        ),
+                      ],
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -70,9 +78,7 @@ class GetStartedScreen extends StatelessWidget {
                         minimumSize: const Size(double.infinity, 55),
                       ),
                       icon: const Image(
-                        image: AssetImage(
-                          "assets/images/Apple.png",
-                        ), // apple logo path
+                        image: AssetImage("assets/images/Apple.png"),
                         width: 24,
                         height: 24,
                       ),
@@ -105,9 +111,7 @@ class GetStartedScreen extends StatelessWidget {
                         minimumSize: const Size(double.infinity, 55),
                       ),
                       icon: const Image(
-                        image: AssetImage(
-                          "assets/images/Google.png",
-                        ), // google logo path
+                        image: AssetImage("assets/images/Google.png"),
                         width: 24,
                         height: 24,
                       ),
@@ -127,7 +131,7 @@ class GetStartedScreen extends StatelessWidget {
 
                   const SizedBox(height: 15),
 
-                  // Continue with Email (Clickable Text)
+                  // Continue with Email
                   GestureDetector(
                     onTap: () {
                       _navigateToSignUp(context);
@@ -138,7 +142,7 @@ class GetStartedScreen extends StatelessWidget {
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
-                        decoration: TextDecoration.underline, // optional
+                        decoration: TextDecoration.underline,
                       ),
                     ),
                   ),

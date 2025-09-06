@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'verification_screen.dart'; // verification screen import kiya
+import 'bday_screen.dart'; // ✅ Import your BdayScreen file
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class NameScreen extends StatefulWidget {
+  const NameScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<NameScreen> createState() => _NameScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _NameScreenState extends State<NameScreen> {
   bool isCaps = false; // caps lock state
 
   @override
@@ -29,35 +29,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           children: [
             const SizedBox(height: 30),
+
+            // Bigger Image on top
+            Image.asset(
+              "assets/images/user.png", // your image path
+              height: 260, // slightly bigger
+              width: 260,
+              fit: BoxFit.contain,
+            ),
+
+            const SizedBox(height: 20),
+
+            // What's your name? text
             const Text(
-              "What’s your email address?",
+              "What’s your name?",
               style: TextStyle(
-                fontSize: 28, // aur chota kiya (pehle 32 tha)
+                fontSize: 34,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 24),
-            const Text(
-              "We’ll email you a code to verify your identity",
-              style: TextStyle(
-                fontSize: 18, // aur chota kiya (pehle 22 tha)
-                color: Colors.black,
-              ),
-              textAlign: TextAlign.center,
-            ),
+
             const SizedBox(height: 40),
 
-            // Email Field
+            // First Name Field
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: TextField(
                 decoration: const InputDecoration(
-                  labelText: "Email Address",
+                  labelText: "First Name",
                   border: UnderlineInputBorder(),
                 ),
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.name,
               ),
             ),
 
@@ -77,11 +81,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   onPressed: () {
-                    // Navigate to Verification Screen
+                    // ✅ Navigate to BdayScreen
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const VerificationScreen(),
+                        builder: (context) => const BdayScreen(),
                       ),
                     );
                   },
@@ -95,17 +99,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
               ),
-            ),
-
-            const SizedBox(height: 20),
-            const Text(
-              "By continuing you agree to our Terms and Privacy Policies",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-              textAlign: TextAlign.center,
             ),
 
             const Spacer(),

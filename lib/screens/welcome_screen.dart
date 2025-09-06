@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'gender_screen.dart'; // 👈 ye import karna na bhoolna
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -84,7 +85,13 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        // navigator lagana ho to yahan karo
+                        // 👇 Navigation to GenderScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const GenderScreen(),
+                          ),
+                        );
                       },
                       child: const Text(
                         "Get Started",
