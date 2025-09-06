@@ -32,26 +32,35 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
   bool get isCodeComplete => !code.contains('');
 
-  Widget buildKey(String number, {VoidCallback? onTap}) {
+  // 🔥 Updated buildKey with letters support
+  Widget buildKey(String number, {String? letters, VoidCallback? onTap}) {
     return Expanded(
       child: InkWell(
         onTap: onTap,
         child: Container(
-          height: 45, // 👈 key ka height thoda kam
+          height: 55,
           margin: const EdgeInsets.all(2),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(6),
           ),
-          child: Center(
-            child: Text(
-              number,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                number,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
               ),
-            ),
+              if (letters != null)
+                Text(
+                  letters,
+                  style: const TextStyle(fontSize: 12, color: Colors.black54),
+                ),
+            ],
           ),
         ),
       ),
@@ -81,7 +90,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
             ),
             Container(
               height: 2,
-              color: Colors.black26, // 👈 fix grey underline (blue hata diya)
+              color: Colors.black26, // 👈 grey underline fix
             ),
           ],
         ),
@@ -185,33 +194,65 @@ class _VerificationScreenState extends State<VerificationScreen> {
             ),
           ),
 
-          // 👇 Keyboard ki height kam kar di (pehle flex:5 tha ab flex:3)
+          // 🔥 Updated Keyboard
           Expanded(
             flex: 3,
             child: Container(
               color: Colors.grey.shade300,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start, // 👈 top se start
                 children: [
                   Row(
                     children: [
                       buildKey('1', onTap: () => _onKeyboardTap('1')),
-                      buildKey('2', onTap: () => _onKeyboardTap('2')),
-                      buildKey('3', onTap: () => _onKeyboardTap('3')),
+                      buildKey(
+                        '2',
+                        letters: "ABC",
+                        onTap: () => _onKeyboardTap('2'),
+                      ),
+                      buildKey(
+                        '3',
+                        letters: "DEF",
+                        onTap: () => _onKeyboardTap('3'),
+                      ),
                     ],
                   ),
                   Row(
                     children: [
-                      buildKey('4', onTap: () => _onKeyboardTap('4')),
-                      buildKey('5', onTap: () => _onKeyboardTap('5')),
-                      buildKey('6', onTap: () => _onKeyboardTap('6')),
+                      buildKey(
+                        '4',
+                        letters: "GHI",
+                        onTap: () => _onKeyboardTap('4'),
+                      ),
+                      buildKey(
+                        '5',
+                        letters: "JKL",
+                        onTap: () => _onKeyboardTap('5'),
+                      ),
+                      buildKey(
+                        '6',
+                        letters: "MNO",
+                        onTap: () => _onKeyboardTap('6'),
+                      ),
                     ],
                   ),
                   Row(
                     children: [
-                      buildKey('7', onTap: () => _onKeyboardTap('7')),
-                      buildKey('8', onTap: () => _onKeyboardTap('8')),
-                      buildKey('9', onTap: () => _onKeyboardTap('9')),
+                      buildKey(
+                        '7',
+                        letters: "PQRS",
+                        onTap: () => _onKeyboardTap('7'),
+                      ),
+                      buildKey(
+                        '8',
+                        letters: "TUV",
+                        onTap: () => _onKeyboardTap('8'),
+                      ),
+                      buildKey(
+                        '9',
+                        letters: "XYZ",
+                        onTap: () => _onKeyboardTap('9'),
+                      ),
                     ],
                   ),
                   Row(
